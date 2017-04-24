@@ -383,10 +383,7 @@ function receivedPostback(event) {
 
   switch(payload) {
     case 'GET_STARTED':
-      sendTextMessage(senderID, "pide get started");
-      break;
-    case 'REQUEST_CABIFY':
-      sendTextMessage(senderID, "pide cabify");
+      //@todo evaluate sending a message after get started.
       break;
     case 'CLIENT_SERVICE':
       sendAssistantOptions(senderID);
