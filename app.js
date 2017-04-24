@@ -384,6 +384,7 @@ function receivedPostback(event) {
   switch(payload) {
     case 'GET_STARTED':
       //@todo evaluate sending a message after get started.
+      sendTextMessage(senderID, "Selecciona una de las opciones del menu");
       break;
     case 'CLIENT_SERVICE':
       sendAssistantOptions(senderID);
