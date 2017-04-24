@@ -301,10 +301,14 @@ function receivedMessage(event) {
 
       case 'typing off':
         sendTypingOff(senderID);
-        break;        
+        break;
 
       case 'account linking':
         sendAccountLinking(senderID);
+        break;
+
+      case 'pmenu':
+        sendPersistentMenu(senderID);
         break;
 
       default:
@@ -363,7 +367,19 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
-  sendTextMessage(senderID, "Postback called");
+
+  switch(payload) {
+    case 'GET_STARTED':
+      sendTextMessage(senderID, "pide get started");
+      break;
+    case 'REQUEST_CABIFY':
+      sendTextMessage(senderID, "pide cabify");
+      break;
+    case 'CLIENT_SERVICE':
+      sendTextMessage(senderID, "pide client service");
+      break;
+  }
+
 }
 
 /*
@@ -769,6 +785,35 @@ function sendTypingOff(recipientId) {
 
   callSendAPI(messageData);
 }
+
+
+/*
+ * Send a message with the account linking call-to-action
+ *
+ */
+function sendPersistentMenu(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Welcome. Link your account.",
+          buttons:[{
+            type: "account_link",
+            url: SERVER_URL + "/authorize"
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
 
 /*
  * Send a message with the account linking call-to-action
