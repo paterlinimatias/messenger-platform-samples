@@ -389,7 +389,7 @@ function receivedPostback(event) {
       sendTextMessage(senderID, "pide cabify");
       break;
     case 'CLIENT_SERVICE':
-      sendTextMessage(senderID, "pide client service");
+      sendAssistantOptions(senderID);
       break;
   }
 
@@ -708,6 +708,35 @@ function sendReceiptMessage(recipientId) {
           }]
         }
       }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+/*
+ * Send a message with Quick Reply buttons.
+ *
+ */
+function sendAssistantOptions(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: "Puedo ayudarte en las siguientes áreas:",
+      quick_replies: [
+        {
+          "content_type":"text",
+          "title":"🚗 Item perdido",
+          "payload":"ASSISTANCE_LOST_ITEMS"
+        },
+        {
+          "content_type":"text",
+          "title":"Problema facturación",
+          "payload":"ASSISTANCE_BILLING"
+        }
+      ]
     }
   };
 
