@@ -728,12 +728,12 @@ function sendAssistantOptions(recipientId) {
       quick_replies: [
         {
           "content_type":"text",
-          "title":"🚗 Item perdido",
+          "title":"🔍Item perdido",
           "payload":"ASSISTANCE_LOST_ITEMS"
         },
         {
           "content_type":"text",
-          "title":"Problema facturación",
+          "title":"💵Problema de facturación",
           "payload":"ASSISTANCE_BILLING"
         }
       ]

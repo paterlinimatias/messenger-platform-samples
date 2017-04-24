@@ -6,13 +6,13 @@ curl -X POST -H "Content-Type: application/json" -d '{
     "call_to_actions":[
         {
         "type":"web_url",
-        "title":"Pedir Cabify",
+        "title":"🚗 Pedir Cabify",
         "url":"http://cabify-bot.herokuapp.com/request_cab",
         "webview_height_ratio":"full"
         },
         {
           "type":"postback",
-          "title":"Atención al Cliente",
+          "title":"📞 Atención al Cliente",
           "payload":"CLIENT_SERVICE"
         }
       ]
