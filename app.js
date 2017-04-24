@@ -731,7 +731,7 @@ function sendAssistantOptions(recipientId) {
         },
         {
           "content_type":"text",
-          "title":"💵Problema de facturación",
+          "title":"💵Problema facturación",
           "payload":"ASSISTANCE_BILLING"
         }
       ]
