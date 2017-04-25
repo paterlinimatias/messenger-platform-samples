@@ -9,45 +9,28 @@
 <body>
 <div data-role="page" data-theme="b" id="jqm-home">
 	<div id="jqm-homeheader">
-		<h1 id="jqm-logo">Header</h1>
-		<p>A Touch-Optimized Web Framework for Smartphones &amp; Tablets</p>
-		<p id="jqm-version">Alpha Release</p>
+		<h3 id="jqm-logo">Lost Items</h3>
 	</div>
 
 	<div data-role="content">
-
 		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
-			<li data-role="list-divider">Overview</li>
-			<li><a href="docs/about/intro.html">Intro to jQuery Mobile</a></li>
-			<li><a href="docs/about/features.html">Features</a></li>
-			<li><a href="docs/about/accessibility.html">Accessibility</a></li>
-			<li><a href="docs/about/platforms.html">Supported platforms</a></li>
-			<li><a href="docs/about/themes.html">Theme system</a></li>
-		</ul>
-
-	</div>
-</div>
-  <h3>Selecciona el viaje donde perdiste tu item:</h3>
-    <ul>
-      <li>* Av. Paseo de la Reforma 222, Cuauhtemoc</li>
+			<li>* Av. Paseo de la Reforma 222, Cuauhtemoc</li>
       <li>* Rio Lerma 123, Cuauhtemoc</li>
       <li>* Av. Masaryk 544, Polanco</li>
-    </ul>
-    <br/>
-    <button title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
+		</ul>
+	</div>
 
-  <script>
+	 <div>
+	  <button title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
+	 </div>
+</div>
+<script>
     window.extAsyncInit = function() {
       // the Messenger Extensions JS SDK is done loading
     };
 
     function closeWebView() {
-        alert('close');
-        MessengerExtensions.requestCloseBrowser(function success() {
-            alert('success');
-          }, function error(err) {
-            alert(err);
-          });
+      window.location = "https://www.messenger.com/closeWindow/?display_text=Cerrando ventana"
     }
   </script>
 
@@ -59,6 +42,6 @@
     js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'Messenger'));
-  </script>
+</script>
 </body>
 </html>
