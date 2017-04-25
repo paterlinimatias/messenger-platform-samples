@@ -2,58 +2,33 @@
 <html>
 <head>
 	<title>Items Perdidos</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<!-- Include meta tag to ensure proper rendering and touch zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Include jQuery Mobile stylesheets -->
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!-- Include the jQuery library -->
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<style type="text/css">
-		legend {
-			font-size:1.3em
-		}
-		label {
-			font-size:1em
-		}
-		input {
-			size: 2em;
-		}
-	</style>
+	<!-- Include the jQuery Mobile library -->
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
-<div class="col-md-4">
+<div >
 	<h4>Selecciona el viaje donde perdiste tu item:</h4>
-	<div>
-		<div class="form-group">
-				<div class="checkbox">
-					<label>
-						<input type="radio" name="address" value="">
-						Av. Paseo de la Reforma 222, Cuauhtemoc
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="radio" name="address" value="">
-						Rio Lerma 123, Cuauhtemoc
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="radio" name="address" value="">
-						Av. Masaryk 544, Polanco
-					</label>
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<button class="btn btn-primary btn-xlarge " title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
-		</div>
+	<form>
+		<fieldset data-role="controlgroup">
+			<legend>Vertical:</legend>
+			<input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" checked="checked">
+			<label for="radio-choice-v-2a">Av. Paseo de la Reforma 222, Cuauhtemoc</label>
+			<input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
+			<label for="radio-choice-v-2b">Rio Lerma 123, Cuauhtemoc</label>
+			<input type="radio" name="radio-choice-v-2" id="radio-choice-v-2c" value="other">
+			<label for="radio-choice-v-2c">Av. Masaryk 544, Polanco</label>
+		</fieldset>
+		<a href="#pagetwo" class="ui-btn ui-corner-all ui-btn-inline" onclick="closeWebView();return false;">Terminar Reclamo</a>
 	</form>
-
 </div>
 <script>
     window.extAsyncInit = function() {
