@@ -166,6 +166,16 @@ app.get('/lost_items', function(req, res) {
 });
 
 
+/*
+ *
+ *
+ */
+app.get('/not_yet', function(req, res) {
+
+  res.render('not_yet', {
+  });
+});
+
 
 /*
  * Verify that the callback came from Facebook. Using the App Secret from 

@@ -5,10 +5,13 @@ curl -X POST -H "Content-Type: application/json" -d '{
     "composer_input_disabled":true,
     "call_to_actions":[
         {
-        "type":"web_url",
-        "title":"🚗  Pedir Cabify",
-        "url":"http://cabify-bot.herokuapp.com/request_cab",
-        "webview_height_ratio":"full"
+          "type":"web_url",
+          "title":"🚗  Pedir Cabify",
+          "url":"https://cabify-bot.herokuapp.com/request_cab",
+          "webview_height_ratio":"full",
+          "webview_share_button":"hide",
+          "messenger_extensions":true,
+          "fallback_url":"https://cabify-bot.herokuapp.com/not_yet"
         },
         {
           "type":"nested",
@@ -18,9 +21,11 @@ curl -X POST -H "Content-Type: application/json" -d '{
             {
               "type":"web_url",
               "title":"🔍  Item perdido",
-              "url":"http://cabify-bot.herokuapp.com/lost_items",
+              "url":"https://cabify-bot.herokuapp.com/lost_items",
               "webview_height_ratio":"full",
-              "webview_share_button":"hide"
+              "webview_share_button":"hide",
+              "messenger_extensions":true,
+              "fallback_url":"https://cabify-bot.herokuapp.com/not_yet"
             },{
               "type":"postback",
                 "title":"💵  Problema facturación",
