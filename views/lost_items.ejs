@@ -26,17 +26,23 @@
 </div>
 <script>
     window.extAsyncInit = function() {
+			alert('cargaron las extensions');
       // the Messenger Extensions JS SDK is done loading
       MessengerExtensions.getSupportedFeatures(function success(result) {
-              var features = result.supported_features;
-              alert(features.join(','));
+				alert(features);
+              // var features = result.supported_features;
+              // alert(features.join(','));
             }, function error(err) {
 
             });
     };
 
     function closeWebView() {
-      window.location = "https://www.messenger.com/closeWindow/?display_text=Cerrando ventana"
+			MessengerExtensions.requestCloseBrowser(function success() {
+  			alert('se cerro');
+      }, function error(err) {
+  			alert('erroro' + err);
+      });
     }
   </script>
 
