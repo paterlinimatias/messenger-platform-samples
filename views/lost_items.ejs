@@ -39,6 +39,7 @@
 				alert('user id: ' +psid);
       }, function error(err, errorMessage) {
         // Error handling code
+        alert('no se puede conseguir user id: (' + err + ') ' + errorMessage);
       });
     };
 
@@ -46,7 +47,7 @@
 			MessengerExtensions.requestCloseBrowser(function success() {
 
       }, function error(err) {
-  			
+
       });
     }
   </script>
