@@ -342,10 +342,6 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
-      case 'pmenu':
-        sendPersistentMenu(senderID);
-        break;
-
       default:
         sendTextMessage(senderID, messageText);
     }
@@ -843,34 +839,6 @@ function sendTypingOff(recipientId) {
       id: recipientId
     },
     sender_action: "typing_off"
-  };
-
-  callSendAPI(messageData);
-}
-
-
-/*
- * Send a message with the account linking call-to-action
- *
- */
-function sendPersistentMenu(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: "Welcome. Link your account.",
-          buttons:[{
-            type: "account_link",
-            url: SERVER_URL + "/authorize"
-          }]
-        }
-      }
-    }
   };
 
   callSendAPI(messageData);
