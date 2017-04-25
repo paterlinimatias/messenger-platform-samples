@@ -271,14 +271,6 @@ function receivedMessage(event) {
     console.log("Quick reply for message %s with payload %s",
       messageId, quickReplyPayload);
 
-    switch (quickReply.payload) {
-      case "ASSISTANCE_LOST_ITEMS":
-        sendTextMessage(senderID, "Quick reply tapped");
-        break;
-      case "ASSISTANCE_BILLING":
-        sendTextMessage(senderID, "Esta funcionalidad aun no está disponible.");
-        break;
-    }
     return;
   }
 
@@ -406,8 +398,8 @@ function receivedPostback(event) {
       //@todo evaluate sending a message after get started.
       sendTextMessage(senderID, "Selecciona una de las opciones del menu");
       break;
-    case 'CLIENT_SERVICE':
-      sendAssistantOptions(senderID);
+    case "ASSISTANCE_BILLING":
+      sendTextMessage(senderID, "Esta funcionalidad aun no está disponible.");
       break;
   }
 
