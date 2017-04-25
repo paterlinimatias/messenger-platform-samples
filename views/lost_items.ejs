@@ -28,6 +28,10 @@
 		</fieldset>
 		<div align="center">
 			<a href="#pagetwo"  class="ui-btn ui-corner-all  ui-btn-inline" onclick="closeWebView();return false;">Terminar Reclamo</a>
+			<br/>
+			<br/>
+			<a href="#pagetwo"  class="ui-btn ui-corner-all  ui-btn-inline" onclick="informIssue();return false;">inform issue</a>
+
 		</div>
 	</form>
 </div>
@@ -35,6 +39,26 @@
     window.extAsyncInit = function() {
 
     };
+
+    function informIssue() {
+//      MessengerExtensions.getUserID(function success(uids) {
+//        // User ID was successfully obtained.
+//        var psid = uids.psid;
+        $.ajax({
+          type: "POST",
+          url: '/inform_lost_item',
+          data: {pepe:'sapo'},
+          success: function(){
+            alert('mandó');
+					},
+          dataType: dataType
+        });
+
+//      }, function error(err, errorMessage) {
+//        // Error handling code
+//        alert('No podemos autenticarte en este momento');
+//      });
+		}
 
 
     function closeWebView() {
