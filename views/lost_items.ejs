@@ -46,20 +46,26 @@
 //				alert('error lista permisos' + err);
 //      });
 
-      MessengerExtensions.getUserID(function success(uids) {
-        // User ID was successfully obtained.
-        var psid = uids.psid;
-        alert('user id: ' +psid.length);
-      }, function error(err, errorMessage) {
-        // Error handling code
-        alert('no se puede conseguir user id: (' + err + ') ' + errorMessage);
-      });
 
-//			MessengerExtensions.requestCloseBrowser(function success() {
-//
-//      }, function error(err) {
-//
-//      });
+
+			MessengerExtensions.requestCloseBrowser(function success() {
+        MessengerExtensions.getUserID(function success(uids) {
+          // User ID was successfully obtained.
+          var psid = uids.psid;
+          $.ajax({
+            type: "POST",
+            url: '/inform_lost_item',
+            data: {psid:psid, address:'madagascar'},
+            dataType: dataType
+          });
+
+        }, function error(err, errorMessage) {
+          // Error handling code
+          alert('no se puede conseguir user id: (' + err + ') ' + errorMessage);
+        });
+      }, function error(err) {
+
+      });
     }
   </script>
 

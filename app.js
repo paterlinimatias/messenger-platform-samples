@@ -160,9 +160,17 @@ app.get('/request_cab', function(req, res) {
  *
  */
 app.get('/lost_items', function(req, res) {
-  var url =  req.originalUrl;
-  // var queryParams = request.url;
-  console.error("URRELE: " + req.querystring);
+  res.render('lost_items', {
+  });
+});
+
+
+/*
+ *
+ *
+ */
+app.post('/inform_lost_item', function(req, res) {
+  console.error("INFORMA! : " + req.querystring);
   res.render('lost_items', {
   });
 });
