@@ -32,10 +32,11 @@ LICENSE file in the root directory of this source tree.
     };
 
     function closeWebView() {
+        alert('close');
         MessengerExtensions.requestCloseBrowser(function success() {
-
+            alert('success');
           }, function error(err) {
-
+            alert(err);
           });
     }
   </script>
