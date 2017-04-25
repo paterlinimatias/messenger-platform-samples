@@ -7,7 +7,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
         {
           "type":"postback",
           "title":"🚗  Pedir Cabify",
-          "postback":""
+          "payload":"REQUEST_CABIFY"
         },
         {
           "type":"nested",
