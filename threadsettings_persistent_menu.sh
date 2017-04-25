@@ -22,7 +22,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
               "type":"web_url",
               "title":"🔍  Item perdido",
               "url":"https://cabify-bot.herokuapp.com/lost_items",
-              "webview_height_ratio":"small",
+              "webview_height_ratio":"compact",
               "webview_share_button":"hide",
               "messenger_extensions":true,
               "fallback_url":"https://cabify-bot.herokuapp.com/not_yet"

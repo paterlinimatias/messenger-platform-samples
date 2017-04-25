@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>LostItems</title>
+	<title>Items Perdidos</title>
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -12,34 +12,36 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container">
 
-	<h5>Selecciona el viaje donde perdiste tu item:</h5>
 	<form>
-		<div class="checkbox">
-		  <label>
-		    <input type="radio" name="address" value="">
-		    Av. Paseo de la Reforma 222, Cuauhtemoc
-		  </label>
-		</div>
-		<div class="checkbox">
-		  <label>
-		    <input type="radio" name="address" value="">
-		    Rio Lerma 123, Cuauhtemoc
-		  </label>
-		</div>
-		<div class="checkbox">
-		  <label>
-		    <input type="radio" name="address" value="">
-		    Av. Masaryk 544, Polanco
-		  </label>
-		</div>
+		<fieldset >
+			<legend >Selecciona el viaje donde perdiste tu item:</legend>
+			<div class="control-group">
+				<div class="checkbox">
+					<label>
+						<input type="radio" name="address" value="">
+						Av. Paseo de la Reforma 222, Cuauhtemoc
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="radio" name="address" value="">
+						Rio Lerma 123, Cuauhtemoc
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="radio" name="address" value="">
+						Av. Masaryk 544, Polanco
+					</label>
+				</div>
+			</div>
+		</fieldset>
 	</form>
 
 	 <div style="text-align:right;margin:10px">
 	  <button class="btn btn-primary" title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
 	 </div>
-</div>
 
 <script>
     window.extAsyncInit = function() {
