@@ -11,9 +11,21 @@ curl -X POST -H "Content-Type: application/json" -d '{
         "webview_height_ratio":"full"
         },
         {
-          "type":"postback",
+          "type":"nested",
           "title":"📞 Atención al Cliente",
-          "payload":"CLIENT_SERVICE"
+          "type":"nested",
+          "call_to_actions":[
+            {
+              "type":"web_url",
+              "title":"🚗 Pedir Cabify",
+              "url":"http://cabify-bot.herokuapp.com/lost_items",
+              "webview_height_ratio":"full"
+            },{
+              "type":"postback",
+                "title":"💵Problema facturación",
+              "payload":"ASSISTANCE_BILLING"
+            }
+          ]
         }
       ]
     }

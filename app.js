@@ -156,6 +156,18 @@ app.get('/request_cab', function(req, res) {
 
 
 /*
+ *
+ *
+ */
+app.get('/lost_items', function(req, res) {
+
+  res.render('lost_items', {
+  });
+});
+
+
+
+/*
  * Verify that the callback came from Facebook. Using the App Secret from 
  * the App Dashboard, we can verify the signature that is sent with each 
  * callback in the x-hub-signature field, located in the header.
@@ -254,11 +266,19 @@ function receivedMessage(event) {
       messageId, appId, metadata);
     return;
   } else if (quickReply) {
+
     var quickReplyPayload = quickReply.payload;
     console.log("Quick reply for message %s with payload %s",
       messageId, quickReplyPayload);
 
-    sendTextMessage(senderID, "Quick reply tapped");
+    switch (quickReply.payload) {
+      case "ASSISTANCE_LOST_ITEMS":
+        sendTextMessage(senderID, "Quick reply tapped");
+        break;
+      case "ASSISTANCE_BILLING":
+        sendTextMessage(senderID, "Esta funcionalidad aun no está disponible.");
+        break;
+    }
     return;
   }
 
