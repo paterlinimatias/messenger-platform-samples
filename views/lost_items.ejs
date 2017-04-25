@@ -25,11 +25,10 @@
 	</style>
 </head>
 <body>
-
-	<form>
-		<fieldset >
-			<legend>Selecciona el viaje donde perdiste tu item:</legend>
-			<div class="control-group">
+<div class="col-md-4">
+	<h4>Selecciona el viaje donde perdiste tu item:</h4>
+	<div>
+		<div class="form-group">
 				<div class="checkbox">
 					<label>
 						<input type="radio" name="address" value="">
@@ -49,13 +48,13 @@
 					</label>
 				</div>
 			</div>
-		</fieldset>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary btn-xlarge " title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
+		</div>
 	</form>
 
-	 <div style="text-align:right;margin:10px">
-	  <button class="btn btn-primary btn-xlarge " title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
-	 </div>
-
+</div>
 <script>
     window.extAsyncInit = function() {
 			alert('cargaron las extensions');
