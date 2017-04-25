@@ -33,22 +33,20 @@
 </div>
 <script>
     window.extAsyncInit = function() {
-			alert('cargaron las extensions');
-      // the Messenger Extensions JS SDK is done loading
-      MessengerExtensions.getSupportedFeatures(function success(result) {
-				alert(features);
-              // var features = result.supported_features;
-              // alert(features.join(','));
-            }, function error(err) {
-
-            });
+      MessengerExtensions.getUserID(function success(uids) {
+        // User ID was successfully obtained.
+        var psid = uids.psid;
+				alert('user id: ' +psid);
+      }, function error(err, errorMessage) {
+        // Error handling code
+      });
     };
 
     function closeWebView() {
 			MessengerExtensions.requestCloseBrowser(function success() {
-  			alert('se cerro');
+
       }, function error(err) {
-  			alert('erroro' + err);
+  			
       });
     }
   </script>
