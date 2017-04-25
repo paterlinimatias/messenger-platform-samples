@@ -1,23 +1,33 @@
-<!-- 
-
-Copyright 2016-present, Facebook, Inc.
-All rights reserved.
-
-This source code is licensed under the license found in the
-LICENSE file in the root directory of this source tree.
-
--->
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Item Perdido</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      div { margin: 10px 0px 10px 0px; }
-    </style>
-  </head>
-  <body>
+<head>
+	<title>LostItems</title>
+	<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+</head>
+<body>
+<div data-role="page" data-theme="b" id="jqm-home">
+	<div id="jqm-homeheader">
+		<h1 id="jqm-logo">Header</h1>
+		<p>A Touch-Optimized Web Framework for Smartphones &amp; Tablets</p>
+		<p id="jqm-version">Alpha Release</p>
+	</div>
 
-    <h3>Selecciona el viaje donde perdiste tu item:</h3>
+	<div data-role="content">
+
+		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+			<li data-role="list-divider">Overview</li>
+			<li><a href="docs/about/intro.html">Intro to jQuery Mobile</a></li>
+			<li><a href="docs/about/features.html">Features</a></li>
+			<li><a href="docs/about/accessibility.html">Accessibility</a></li>
+			<li><a href="docs/about/platforms.html">Supported platforms</a></li>
+			<li><a href="docs/about/themes.html">Theme system</a></li>
+		</ul>
+
+	</div>
+</div>
+  <h3>Selecciona el viaje donde perdiste tu item:</h3>
     <ul>
       <li>* Av. Paseo de la Reforma 222, Cuauhtemoc</li>
       <li>* Rio Lerma 123, Cuauhtemoc</li>
@@ -50,5 +60,5 @@ LICENSE file in the root directory of this source tree.
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'Messenger'));
   </script>
-  </body>
+</body>
 </html>

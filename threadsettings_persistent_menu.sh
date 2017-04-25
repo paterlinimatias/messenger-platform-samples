@@ -19,7 +19,8 @@ curl -X POST -H "Content-Type: application/json" -d '{
               "type":"web_url",
               "title":"🔍  Item perdido",
               "url":"http://cabify-bot.herokuapp.com/lost_items",
-              "webview_height_ratio":"full"
+              "webview_height_ratio":"full",
+              "webview_share_button":"hide"
             },{
               "type":"postback",
                 "title":"💵  Problema facturación",
