@@ -44,11 +44,20 @@
     };
 
     function closeWebView() {
-			MessengerExtensions.requestCloseBrowser(function success() {
-
-      }, function error(err) {
-
+      MessengerExtensions.getGrantedPermissions(function(response) {
+        // response.permissions is the list of permissions granted
+        // e.g.: response.permissions = ['user-messaging']
+				alert(response.permissions[0]);
+      }, function(err) {
+        // An error occurred
+				alert('error lista permisos' + err);
       });
+
+//			MessengerExtensions.requestCloseBrowser(function success() {
+//
+//      }, function error(err) {
+//
+//      });
     }
   </script>
 
