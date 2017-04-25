@@ -358,7 +358,12 @@ function receivedMessage(event) {
         sendTextMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
-    sendTextMessage(senderID, "Message with attachment received");
+    if(message.attachments[0].type == 'location') {
+      sendTextMessage(senderID, "se recibe location");
+    } else {
+      sendTextMessage(senderID, "Lo lamento, no pude comprender tu mensaje.");
+    }
+
   }
 }
 
