@@ -173,6 +173,7 @@ app.post('/inform_lost_item', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ success: true }));
   console.log('llamada desde el frontend: el usuario es ' + req.body.psid);
+  sendTextMessage(req.body.psid, "Recibido. En breve uno de nuestros representantes se podrá en contacto contigo.");
 });
 
 
