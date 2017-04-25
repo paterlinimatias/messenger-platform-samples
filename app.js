@@ -359,7 +359,7 @@ function receivedMessage(event) {
     }
   } else if (messageAttachments) {
     if(message.attachments[0].type == 'location') {
-      sendTextMessage(senderID, "se recibe location");
+      sendDestinyButton(senderID);
     } else {
       sendTextMessage(senderID, "Lo lamento, no pude comprender tu mensaje.");
     }
@@ -597,6 +597,41 @@ function sendTextMessage(recipientId, messageText) {
   callSendAPI(messageData);
 }
 
+
+
+/*
+ * Send a button message using the Send API.
+ *
+ */
+function sendDestinyButton(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Enterado. Ya tengo tu ubicación. Ahora selecciona la dirección de destino.",
+          buttons:[{
+            "type":"web_url",
+            "title":"Destino",
+            "url":"https://cabify-bot.herokuapp.com/request",
+            "webview_height_ratio":"tall",
+            "webview_share_button":"hide",
+            "messenger_extensions":true,
+            "fallback_url":"https://cabify-bot.herokuapp.com/not_yet"
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+
 /*
  * Send a button message using the Send API.
  *
@@ -790,7 +825,7 @@ function sendLocationRequest(recipientId) {
       id: recipientId
     },
     message: {
-      text: "Por favor da clic en el botón de bajo para conocer tu ubicación",
+      text: "Por favor da clic en el botón de bajo para conocer tu ubicación 📌",
       quick_replies: [
         {
           "content_type":"location"
