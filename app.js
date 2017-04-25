@@ -419,6 +419,9 @@ function receivedPostback(event) {
     case "ASSISTANCE_BILLING":
       sendTextMessage(senderID, "Esta funcionalidad aun no está disponible.");
       break;
+    case "REQUEST_CABIFY":
+      sendLocationRequest(senderID);
+      break;
   }
 
 }
@@ -770,6 +773,30 @@ function sendAssistantOptions(recipientId) {
 
   callSendAPI(messageData);
 }
+
+
+/*
+ * Send the location request
+ *
+ */
+function sendLocationRequest(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: "Por favor da clic en el botón de bajo para conocer tu ubicación",
+      quick_replies: [
+        {
+          "content_type":"location"
+        }
+      ]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
 
 /*
  * Send a message with Quick Reply buttons.

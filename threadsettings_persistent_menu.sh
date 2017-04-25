@@ -5,13 +5,9 @@ curl -X POST -H "Content-Type: application/json" -d '{
     "composer_input_disabled":true,
     "call_to_actions":[
         {
-          "type":"web_url",
+          "type":"postback",
           "title":"🚗  Pedir Cabify",
-          "url":"https://cabify-bot.herokuapp.com/request_cab",
-          "webview_height_ratio":"full",
-          "webview_share_button":"hide",
-          "messenger_extensions":true,
-          "fallback_url":"https://cabify-bot.herokuapp.com/not_yet"
+          "postback":""
         },
         {
           "type":"nested",
