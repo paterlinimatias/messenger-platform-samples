@@ -170,7 +170,8 @@ app.get('/lost_items', function(req, res) {
  *
  */
 app.post('/inform_lost_item', function(req, res) {
-  var util = require("util");
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({ success: true }));
   console.log('llamada desde el frontend: el usuario es ' + req.body.psid);
 });
 
