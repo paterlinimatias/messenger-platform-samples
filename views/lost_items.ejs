@@ -36,35 +36,29 @@
 
     };
 
+
     function closeWebView() {
-//      MessengerExtensions.getGrantedPermissions(function(response) {
-//        // response.permissions is the list of permissions granted
-//        // e.g.: response.permissions = ['user-messaging']
-//				alert(response.permissions[0]);
-//      }, function(err) {
-//        // An error occurred
-//				alert('error lista permisos' + err);
-//      });
 
-
-
-			MessengerExtensions.requestCloseBrowser(function success() {
-        MessengerExtensions.getUserID(function success(uids) {
-          // User ID was successfully obtained.
-          var psid = uids.psid;
-          $.ajax({
-            type: "POST",
-            url: '/inform_lost_item',
-            data: {psid:psid, address:'madagascar'},
-            dataType: dataType
-          });
-
-        }, function error(err, errorMessage) {
-          // Error handling code
-          alert('no se puede conseguir user id: (' + err + ') ' + errorMessage);
+      MessengerExtensions.getUserID(function success(uids) {
+        // User ID was successfully obtained.
+        var psid = uids.psid;
+        $.ajax({
+          type: "POST",
+          url: '/inform_lost_item',
+          data: {psid: psid, address: 'madagascar'},
+					success: closeBrowser,
+          dataType: dataType
         });
-      }, function error(err) {
 
+      }, function error(err, errorMessage) {
+        // Error handling code
+        alert('No podemos autenticarte en este momento');
+      });
+    }
+
+    function closeBrowser() {
+			MessengerExtensions.requestCloseBrowser(function success() {
+      }, function error(err) {
       });
     }
   </script>
