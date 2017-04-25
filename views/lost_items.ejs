@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 -->
 <html>
   <head>
-    <title>OAuth Test</title>
+    <title>Item Perdido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       div { margin: 10px 0px 10px 0px; }
@@ -17,12 +17,37 @@ LICENSE file in the root directory of this source tree.
   </head>
   <body>
 
-    <h1>LOst items Buscar por dirección</h1>
+    <h3>Selecciona el viaje donde perdiste tu item:</h3>
+    <ul>
+      <li>* Av. Paseo de la Reforma 222, Cuauhtemoc</li>
+      <li>* Rio Lerma 123, Cuauhtemoc</li>
+      <li>* Av. Masaryk 544, Polanco</li>
+    </ul>
+    <br/>
+    <button value="Terminar Reclamo" onclick="closeWebView();" />
 
+  <script>
+    window.extAsyncInit = function() {
+      // the Messenger Extensions JS SDK is done loading
+    };
 
-    
+    function closeWebView() {
+        MessengerExtensions.requestCloseBrowser(function success() {
+          
+          }, function error(err) {
 
+          });
+    }
+  </script>
 
-
+  <script>
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'Messenger'));
+  </script>
   </body>
 </html>
