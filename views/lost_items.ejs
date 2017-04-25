@@ -24,7 +24,7 @@ LICENSE file in the root directory of this source tree.
       <li>* Av. Masaryk 544, Polanco</li>
     </ul>
     <br/>
-    <button value="Terminar Reclamo" onclick="closeWebView();" />
+    <button title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
 
   <script>
     window.extAsyncInit = function() {
@@ -33,7 +33,7 @@ LICENSE file in the root directory of this source tree.
 
     function closeWebView() {
         MessengerExtensions.requestCloseBrowser(function success() {
-          
+
           }, function error(err) {
 
           });
