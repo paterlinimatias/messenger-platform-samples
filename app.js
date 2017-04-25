@@ -160,7 +160,10 @@ app.get('/request_cab', function(req, res) {
  *
  */
 app.get('/lost_items', function(req, res) {
-
+  var url = require('url');
+  var url_parts = url.parse(request.url, true);
+  // var queryParams = request.url;
+  console.error("URRELE: " + request.url );
   res.render('lost_items', {
   });
 });
