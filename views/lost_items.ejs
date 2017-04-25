@@ -33,24 +33,26 @@
 </div>
 <script>
     window.extAsyncInit = function() {
-      MessengerExtensions.getUserID(function success(uids) {
-        // User ID was successfully obtained.
-        var psid = uids.psid;
-				alert('user id: ' +psid.length);
-      }, function error(err, errorMessage) {
-        // Error handling code
-        alert('no se puede conseguir user id: (' + err + ') ' + errorMessage);
-      });
+
     };
 
     function closeWebView() {
-      MessengerExtensions.getGrantedPermissions(function(response) {
-        // response.permissions is the list of permissions granted
-        // e.g.: response.permissions = ['user-messaging']
-				alert(response.permissions[0]);
-      }, function(err) {
-        // An error occurred
-				alert('error lista permisos' + err);
+//      MessengerExtensions.getGrantedPermissions(function(response) {
+//        // response.permissions is the list of permissions granted
+//        // e.g.: response.permissions = ['user-messaging']
+//				alert(response.permissions[0]);
+//      }, function(err) {
+//        // An error occurred
+//				alert('error lista permisos' + err);
+//      });
+
+      MessengerExtensions.getUserID(function success(uids) {
+        // User ID was successfully obtained.
+        var psid = uids.psid;
+        alert('user id: ' +psid.length);
+      }, function error(err, errorMessage) {
+        // Error handling code
+        alert('no se puede conseguir user id: (' + err + ') ' + errorMessage);
       });
 
 //			MessengerExtensions.requestCloseBrowser(function success() {
