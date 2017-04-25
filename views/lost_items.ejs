@@ -27,6 +27,12 @@
 <script>
     window.extAsyncInit = function() {
       // the Messenger Extensions JS SDK is done loading
+      MessengerExtensions.getSupportedFeatures(function success(result) {
+              var features = result.supported_features;
+              alert(features.join(','));
+            }, function error(err) {
+
+            });
     };
 
     function closeWebView() {
