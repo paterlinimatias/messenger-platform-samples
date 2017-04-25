@@ -150,7 +150,8 @@ app.get('/authorize', function(req, res) {
  */
 app.get('/request_cab', function(req, res) {
 
-  res.render('request', {
+  res.render('request_cab', {
+
   });
 });
 
@@ -617,7 +618,7 @@ function sendDestinyButton(recipientId) {
           buttons:[{
             "type":"web_url",
             "title":"Destino",
-            "url":"https://cabify-bot.herokuapp.com/request",
+            "url":"https://cabify-bot.herokuapp.com/request_cab",
             "webview_height_ratio":"tall",
             "webview_share_button":"hide",
             "messenger_extensions":true,
