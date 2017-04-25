@@ -41,23 +41,22 @@
     };
 
     function informIssue() {
-//      MessengerExtensions.getUserID(function success(uids) {
-//        // User ID was successfully obtained.
-//        var psid = uids.psid;
+      MessengerExtensions.getUserID(function success(uids) {
+        // User ID was successfully obtained.
+				var data = {psid: uids.psid, action: 'inform_lost_item', address: 'direccion bla blabla'};
         $.ajax({
           type: "POST",
           url: '/inform_lost_item',
-          data: {pepe:'sapo'},
           success: function(){
             alert('mandó');
 					},
-          dataType: dataType
+          contentType: 'application/json',
+          data: JSON.stringify(data)
         });
-
-//      }, function error(err, errorMessage) {
-//        // Error handling code
-//        alert('No podemos autenticarte en este momento');
-//      });
+      }, function error(err, errorMessage) {
+        // Error handling code
+        alert('No podemos autenticarte en este momento');
+      });
 		}
 
 

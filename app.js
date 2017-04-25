@@ -170,9 +170,8 @@ app.get('/lost_items', function(req, res) {
  *
  */
 app.post('/inform_lost_item', function(req, res) {
-  console.error("INFORMA! : " + req.querystring);
-  res.render('lost_items', {
-  });
+  var util = require("util");
+  console.log('llamada desde el frontend: el usuario es ' + req.body.psid);
 });
 
 
@@ -202,6 +201,7 @@ function verifyRequestSignature(req, res, buf) {
     // For testing, let's log an error. In production, you should throw an 
     // error.
     console.error("Couldn't validate the signature.");
+
   } else {
     var elements = signature.split('=');
     var method = elements[0];
