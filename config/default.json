@@ -2,5 +2,5 @@
     "appSecret": "bd41ff3f1d6a2f0da836b2604f246e66",
     "pageAccessToken": "EAABmZCdKQWHkBAEGMd5dAeCtewfAJJTqkzFz5Osd05sPgm0euzQlr50eJZA7YP6hkfkrXCvOa42kQnHxA2FEZCgGZCAcSSsgDOplL6jeTmdUiMzBeQomZAazIxSfjd12LaDFCZCbXbzDapUZASOhG8VpjHPqsx8WT7CuXEBfFSmPAZDZD",
     "validationToken": "matute1234",
-    "serverURL": "http://http://cabify-bot.herokuapp.com/"
+    "serverURL": "https://http://cabify-bot.herokuapp.com/"
 }
