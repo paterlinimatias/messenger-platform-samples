@@ -2,28 +2,45 @@
 <html>
 <head>
 	<title>LostItems</title>
-	<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
-	<script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-<div data-role="page" id="jqm-home">
-	<div id="jqm-homeheader">
-		<h3 id="jqm-logo">Lost Items</h3>
-	</div>
+<div class="container">
 
-	<div data-role="content">
-		<ul data-role="listview" data-inset="true" data-dividertheme="b">
-			<li>* Av. Paseo de la Reforma 222, Cuauhtemoc</li>
-      <li>* Rio Lerma 123, Cuauhtemoc</li>
-      <li>* Av. Masaryk 544, Polanco</li>
-		</ul>
-	</div>
+	<h5>Selecciona el viaje donde perdiste tu item:</h5>
+	<form>
+		<div class="checkbox">
+		  <label>
+		    <input type="radio" name="address" value="">
+		    Av. Paseo de la Reforma 222, Cuauhtemoc
+		  </label>
+		</div>
+		<div class="checkbox">
+		  <label>
+		    <input type="radio" name="address" value="">
+		    Rio Lerma 123, Cuauhtemoc
+		  </label>
+		</div>
+		<div class="checkbox">
+		  <label>
+		    <input type="radio" name="address" value="">
+		    Av. Masaryk 544, Polanco
+		  </label>
+		</div>
+	</form>
 
-	 <div>
-	  <button title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
+	 <div style="text-align:right;margin:10px">
+	  <button class="btn btn-primary" title="Terminar Reclamo" onclick="closeWebView();" >Terminar Reclamo</button>
 	 </div>
 </div>
+
 <script>
     window.extAsyncInit = function() {
 			alert('cargaron las extensions');
