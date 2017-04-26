@@ -460,8 +460,22 @@ function receivedPostback(event) {
 
   switch(payload) {
     case 'GET_STARTED':
-      //@todo evaluate sending a message after get started.
-      sendTextMessage(senderID, "¡Hola {{user_first_name}}, Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
+      var options = {
+        host: 'graph.facebook.com',
+        port: 443,
+        path: '/v2.6/' + senderID + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + PAGE_ACCESS_TOKEN
+      };
+
+      http.get(options, function(res) {
+        console.log("Got response: " + res);
+        sendTextMessage(senderID, "¡Hola , Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
+        sendTextMessage(senderID, "Selecciona una de las opciones del menu");
+      }).on('error', function(e) {
+        console.log("Got error: " + e.message);
+        sendTextMessage(senderID, "¡Hola, Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
+        sendTextMessage(senderID, "Selecciona una de las opciones del menu");
+      });
+
       break;
     case "ASSISTANCE_BILLING":
       sendTextMessage(senderID, "Esta funcionalidad aun no está disponible.");
