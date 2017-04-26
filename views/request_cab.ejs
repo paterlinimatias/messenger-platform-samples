@@ -107,9 +107,10 @@
 
 
 
-//    MessengerExtensions.getUserID(function success(uids) {
-//      var psid = uids.psid;
-        var psid = 45673;
+    MessengerExtensions.getUserID(function success(uids) {
+      var psid = uids.psid;
+//      For testing purposes comment the two lines above and uncomment the next,
+//        var psid = 45673;
       var data = {psid: psid, action: 'request_cabify', address: address};
       $.ajax({
         type: "POST",
@@ -121,10 +122,11 @@
         data: JSON.stringify(data),
         dataType: 'json'
       });
-//    }, function error(err, errorMessage) {
-//      // Error handling code
-//      alert('No podemos autenticarte en este momento');
-//    });
+//      For testing purposes comment the four lines below
+    }, function error(err, errorMessage) {
+      // Error handling code
+      alert('No podemos autenticarte en este momento');
+    });
   }
 
 
