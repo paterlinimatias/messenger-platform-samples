@@ -182,6 +182,28 @@ app.post('/inform_lost_item', function(req, res) {
  *
  *
  */
+app.get('/search_address', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  var GoogleMapsAPI = require('googlemaps');
+  var publicConfig = {
+    key: 'AIzaSyCpmCSerVJ7bljhpaAdVGdM4kJbRRa0_g4',
+    stagger_time:       1000, // for elevationPath
+    encode_polylines:   false,
+    secure:             true, // use
+  };
+  var gmAPI = new GoogleMapsAPI(publicConfig);
+  gmAPI.placeAutocomplete({
+    input: req.query.q
+  }, function(err, data) {
+    //console.log("SEARCH QUERY: " + req.query.q);
+    res.send(JSON.stringify(data.predictions));
+  },true);
+});
+
+/*
+ *
+ *
+ */
 app.post('/request_cabify', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ success: true }));

@@ -1,58 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>$.geocomplete()</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <title>Pedir Cabify</title>
+  <!-- Include meta tag to ensure proper rendering and touch zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Include jQuery Mobile stylesheets -->
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+  <!-- Include the jQuery library -->
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  <!-- Include the jQuery Mobile library -->
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<style type="text/css">
+  .ui-filter-inset {
+        margin-top: 0;
+  }
+</style>
 </head>
+
 <body>
+    <form class="ui-filterable">
+          <input id="autocomplete-input" data-type="search" placeholder="Escribe la dirección...">
+    </form>
+    <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
+    </ul>
 
-<form>
-  <input id="geocomplete" type="text" placeholder="Type in an address" size="90" />
-  <input id="find" type="button" value="find" />
-</form>
+  <br/>
+  <form>
+    <fieldset data-role="controlgroup" data-mini="true">
+      <legend>Destinos recientes:</legend>
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" >
+      <label for="radio-choice-v-2a">Av. Paseo de la Reforma 222, Cuauhtemoc</label>
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
+      <label for="radio-choice-v-2b">Rio Lerma 123, Cuauhtemoc</label>
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2c" value="other">
+      <label for="radio-choice-v-2c">Av. Masaryk 544, Polanco</label>
+    </fieldset>
+    <div align="center">
+      <a href="#pagetwo"  class="ui-btn ui-corner-all  ui-btn-inline" onclick="requestCabify();return false;">Pedir Cabify</a>
 
-<div id="examples">
-  Examples:
-  <a href="#">Hamburg, Germany</a>
-  <a href="#">3rr0r</a>
-  <a href="#">Hauptstraße</a>
+    </div>
+  </form>
 </div>
+<script>
 
-<pre id="logger">Log:</pre>
+    $( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
+      var $ul = $( this ),
+        $input = $( data.input ),
+        value = $input.val(),
+        html = "";
+      $ul.html( "" );
+      if ( value && value.length > 2 ) {
+        $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+        $ul.listview( "refresh" );
+        $.ajax({
+          url: "/search_address",
+          dataType: "json",
+          crossDomain: true,
+          data: {
+            q: $input.val()
+          }
+        })
+          .then( function ( response ) {
+            $.each( response, function ( i, address ) {
+              console.log(address.description);
+              html += "<li>" + address.description + "</li>";
+            });
+            $ul.html( html );
+            $ul.listview( "refresh" );
+            $ul.trigger( "updatelayout");
+          });
+      }
+    });
 
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCpmCSerVJ7bljhpaAdVGdM4kJbRRa0_g4&libraries=places"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  window.extAsyncInit = function() {
 
-<script src="bower_components/geocomplete/jquery.geocomplete.js"></script>
-<script src="assets/logger.js"></script>
+  };
+
+  function requestCabify() {
+    MessengerExtensions.getUserID(function success(uids) {
+      var psid = uids.psid;
+//        var psid = 45673;
+      var data = {psid: psid, action: 'request_cabify', address: 'direccion bla blabla'};
+      $.ajax({
+        type: "POST",
+        url: '/request_cabify',
+        success: function(){
+          closeBrowser();
+        },
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json'
+      });
+    }, function error(err, errorMessage) {
+      // Error handling code
+      alert('No podemos autenticarte en este momento');
+    });
+  }
+
+
+  function closeBrowser() {
+    MessengerExtensions.requestCloseBrowser(function success() {
+    }, function error(err) {
+    });
+  }
+</script>
 
 <script>
-  $(function(){
-
-    $("#geocomplete").geocomplete()
-      .bind("geocode:result", function(event, result){
-        $.log("Result: " + result.formatted_address);
-      })
-      .bind("geocode:error", function(event, status){
-        $.log("ERROR: " + status);
-      })
-      .bind("geocode:multiple", function(event, results){
-        $.log("Multiple: " + results.length + " results found");
-      });
-
-    $("#find").click(function(){
-      $("#geocomplete").trigger("geocode");
-    });
-
-
-    $("#examples a").click(function(){
-      $("#geocomplete").val($(this).text()).trigger("geocode");
-      return false;
-    });
-
-  });
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'Messenger'));
 </script>
+
 </body>
 </html>
-
