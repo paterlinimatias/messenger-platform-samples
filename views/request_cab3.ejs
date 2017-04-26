@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pedir Cabify</title>
+  <!-- Include meta tag to ensure proper rendering and touch zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Include jQuery Mobile stylesheets -->
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+  <!-- Include the jQuery library -->
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  <!-- Include the jQuery Mobile library -->
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+  <style>
+    #locationField, #controls {
+      position: relative;
+      width: 480px;
+    }
+    #autocomplete {
+
+    }
+    .label {
+      text-align: right;
+      font-weight: bold;
+      width: 100px;
+      color: #303030;
+    }
+
+    #address td {
+      font-size: 10pt;
+    }
+    .field {
+      width: 99%;
+    }
+    .slimField {
+      width: 80px;
+    }
+    .wideField {
+      width: 200px;
+    }
+
+  </style>
+</head>
+
+<body>
+<div >
+  <form>
+    <input id="autocomplete" placeholder="Enter your address"
+           type="search" name="search"></input>
+    <br/>
+    <fieldset data-role="controlgroup" data-mini="true">
+      <legend>Destinos recientes:</legend>
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" >
+      <label for="radio-choice-v-2a">Av. Paseo de la Reforma 222, Cuauhtemoc</label>
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
+      <label for="radio-choice-v-2b">Rio Lerma 123, Cuauhtemoc</label>
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2c" value="other">
+      <label for="radio-choice-v-2c">Av. Masaryk 544, Polanco</label>
+    </fieldset>
+    <div align="center">
+      <a href="#pagetwo"  class="ui-btn ui-corner-all  ui-btn-inline" onclick="requestCabify();return false;">Pedir Cabify</a>
+
+    </div>
+  </form>
+</div>
+<script>
+  window.extAsyncInit = function() {
+
+  };
+
+  function requestCabify() {
+    MessengerExtensions.getUserID(function success(uids) {
+      var psid = uids.psid;
+//        var psid = 45673;
+      var data = {psid: psid, action: 'request_cabify', address: 'direccion bla blabla'};
+      $.ajax({
+        type: "POST",
+        url: '/request_cabify',
+        success: function(){
+          closeBrowser();
+        },
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json'
+      });
+    }, function error(err, errorMessage) {
+      // Error handling code
+      alert('No podemos autenticarte en este momento');
+    });
+  }
+
+
+  function closeBrowser() {
+    MessengerExtensions.requestCloseBrowser(function success() {
+    }, function error(err) {
+    });
+  }
+</script>
+
+<script>
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'Messenger'));
+</script>
+
+<script>
+  var placeSearch, autocomplete;
+
+  function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+      (document.getElementById('autocomplete')),
+      {types: ['geocode']});
+
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+
+  function fillInAddress() {
+    var place = autocomplete.getPlace();
+    console.log(place);
+  }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpmCSerVJ7bljhpaAdVGdM4kJbRRa0_g4&libraries=places&callback=initAutocomplete"
+        async defer></script>
+</body>
+</html>
