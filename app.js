@@ -460,22 +460,29 @@ function receivedPostback(event) {
 
   switch(payload) {
     case 'GET_STARTED':
-      var options = {
-        host: 'graph.facebook.com',
-        port: 443,
-        path: '/v2.6/' + senderID + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + PAGE_ACCESS_TOKEN
-      };
-
-      http.get(options, function(res) {
-        console.log("Got response: " + res);
-        sendTextMessage(senderID, "¡Hola , Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
-        sendTextMessage(senderID, "Selecciona una de las opciones del menu");
-      }).on('error', function(e) {
-        console.log("Got error: " + e.message);
-        sendTextMessage(senderID, "¡Hola, Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
-        sendTextMessage(senderID, "Selecciona una de las opciones del menu");
+      // var options = {
+      //   host: 'graph.facebook.com',
+      //   port: 443,
+      //   path: '/v2.6/' + senderID + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + PAGE_ACCESS_TOKEN
+      // };
+      //
+      // http.get(options, function(res) {
+      //   console.log("Got response: ") + res);
+      //   sendTextMessage(senderID, "¡Hola , Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
+      //   sendTextMessage(senderID, "Selecciona una de las opciones del menu");
+      // }).on('error', function(e) {
+      //   console.log("Got error: " + e.message);
+      //   sendTextMessage(senderID, "¡Hola, Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
+      //   sendTextMessage(senderID, "Selecciona una de las opciones del menu");
+      // });
+      request('https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + PAGE_ACCESS_TOKEN, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log('FUNCO LLAMADA AFACEBOOK');
+          console.log(body);
+        }
       });
-
+      sendTextMessage(senderID, "¡Hola , Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
+      sendTextMessage(senderID, "Selecciona una de las opciones del menu");
       break;
     case "ASSISTANCE_BILLING":
       sendTextMessage(senderID, "Esta funcionalidad aun no está disponible.");
