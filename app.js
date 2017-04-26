@@ -658,7 +658,7 @@ function sendDestinyButton(recipientId) {
           text: "Enterado. Ya tengo tu ubicación. Ahora selecciona la dirección de destino.",
           buttons:[{
             "type":"web_url",
-            "title":"Destino",
+            "title":"Seleccionar Destino",
             "url":"https://cabify-bot.herokuapp.com/request_cab",
             "webview_height_ratio":"compact",
             "webview_share_button":"hide",
