@@ -31,20 +31,37 @@
   <form>
     <fieldset data-role="controlgroup" data-mini="true">
       <legend>Destinos recientes:</legend>
-      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" >
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="Av. Paseo de la Reforma 222, Cuauhtemoc" >
       <label for="radio-choice-v-2a">Av. Paseo de la Reforma 222, Cuauhtemoc</label>
-      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="Rio Lerma 123, Cuauhtemoc">
       <label for="radio-choice-v-2b">Rio Lerma 123, Cuauhtemoc</label>
-      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2c" value="other">
+      <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2c" value="Av. Masaryk 544, Polanco">
       <label for="radio-choice-v-2c">Av. Masaryk 544, Polanco</label>
     </fieldset>
     <div align="center">
-      <a href="#pagetwo"  class="ui-btn ui-corner-all  ui-btn-inline" onclick="requestCabify();return false;">Pedir Cabify</a>
+      <a href="#pagetwo"  class="ui-btn ui-corner-all  ui-btn-inline" onclick="requestCabify(false);return false;">Pedir Cabify</a>
 
     </div>
   </form>
 </div>
 <script>
+
+    var entityMap = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+      '/': '&#x2F;',
+      '`': '&#x60;',
+      '=': '&#x3D;'
+    };
+
+    function escapeHtml (string) {
+      return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+        return entityMap[s];
+      });
+    }
 
     $( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
       var $ul = $( this ),
@@ -65,8 +82,7 @@
         })
           .then( function ( response ) {
             $.each( response, function ( i, address ) {
-              console.log(address.description);
-              html += "<li><a href='#' onclick='requestCabify();'>" + address.description + "</a></li>";
+              html += "<li><a href='#' onclick='requestCabify(\"" + escapeHtml(address.description) + "\");'>" + address.description + "</a></li>";
             });
             $ul.html( html );
             $ul.listview( "refresh" );
@@ -79,11 +95,22 @@
 
   };
 
-  function requestCabify() {
-    MessengerExtensions.getUserID(function success(uids) {
-      var psid = uids.psid;
-//        var psid = 45673;
-      var data = {psid: psid, action: 'request_cabify', address: 'direccion bla blabla'};
+  function requestCabify(address) {
+
+    if(!address) {
+      if($('input[name=radio-choice-v-2]:checked').length == 0) {
+        alert('Debes escribir o seleccionar una dirección');
+        return false;
+      }
+      address = $('input[name=radio-choice-v-2]:checked').val();
+    }
+
+
+
+//    MessengerExtensions.getUserID(function success(uids) {
+//      var psid = uids.psid;
+        var psid = 45673;
+      var data = {psid: psid, action: 'request_cabify', address: address};
       $.ajax({
         type: "POST",
         url: '/request_cabify',
@@ -94,10 +121,10 @@
         data: JSON.stringify(data),
         dataType: 'json'
       });
-    }, function error(err, errorMessage) {
-      // Error handling code
-      alert('No podemos autenticarte en este momento');
-    });
+//    }, function error(err, errorMessage) {
+//      // Error handling code
+//      alert('No podemos autenticarte en este momento');
+//    });
   }
 
 

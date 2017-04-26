@@ -208,7 +208,7 @@ app.post('/request_cabify', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ success: true }));
   console.log('llamada desde el frontend: el usuario es ' + req.body.psid);
-  sendTextMessage(req.body.psid, "Estamos buscando a tu Cabify más cercano...");
+  sendTextMessage(req.body.psid, "Estamos buscando tu Cabify más cercano para ir hasta " + req.body.address);
   //@todo guardar en la db los mensajes que hay que mandar
   setTimeout(function () {
     sendTextMessage(req.body.psid, "El conductor con placas AAA-1234 esta en camino. Tiempo estimado de arribo 1 min.");
