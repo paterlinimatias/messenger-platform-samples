@@ -631,7 +631,7 @@ function sendDestinyButton(recipientId) {
             "type":"web_url",
             "title":"Destino",
             "url":"https://cabify-bot.herokuapp.com/request_cab",
-            "webview_height_ratio":"tall",
+            "webview_height_ratio":"compact",
             "webview_share_button":"hide",
             "messenger_extensions":true,
             "fallback_url":"https://cabify-bot.herokuapp.com/not_yet"
