@@ -479,11 +479,12 @@ function receivedPostback(event) {
         if (!error && response.statusCode == 200) {
           var user = JSON.parse(body);
           sendTextMessage(senderID, "¡Hola " + user.first_name + ", Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
-          sendTextMessage(senderID, "Selecciona una de las opciones del menu");
         } else {
           sendTextMessage(senderID, "¡Hola , Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
-          sendTextMessage(senderID, "Selecciona una de las opciones del menu");
         }
+        setTimeout(function(){
+          sendTextMessage(senderID, "Selecciona una de las opciones del menu");
+        },1000);
       });
 
       break;
