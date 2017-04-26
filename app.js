@@ -461,7 +461,7 @@ function receivedPostback(event) {
   switch(payload) {
     case 'GET_STARTED':
       //@todo evaluate sending a message after get started.
-      sendTextMessage(senderID, "Selecciona una de las opciones del menu");
+      sendTextMessage(senderID, "¡Hola {{user_first_name}}, Soy CabiBOT! 🤖 Desde aquí podrás pedir tu Cabify y tener atención personalizada. ¿Comenzamos?");
       break;
     case "ASSISTANCE_BILLING":
       sendTextMessage(senderID, "Esta funcionalidad aun no está disponible.");
@@ -867,7 +867,7 @@ function sendLocationRequest(recipientId) {
       id: recipientId
     },
     message: {
-      text: "Por favor da clic en el botón de bajo para conocer tu ubicación 📌",
+      text: "Por favor da clic en el botón debajo para conocer tu ubicación 📌",
       quick_replies: [
         {
           "content_type":"location"
