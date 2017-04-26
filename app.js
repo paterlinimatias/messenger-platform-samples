@@ -182,6 +182,18 @@ app.post('/inform_lost_item', function(req, res) {
  *
  *
  */
+app.post('/request_cabify', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({ success: true }));
+  console.log('llamada desde el frontend: el usuario es ' + req.body.psid);
+  sendTextMessage(req.body.psid, "Estamos buscando a tu Cabify más cercano...");
+  //@todo guardar en la db los mensajes que hay que mandar
+});
+
+/*
+ *
+ *
+ */
 app.get('/not_yet', function(req, res) {
 
   res.render('not_yet', {
