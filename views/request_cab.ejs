@@ -24,7 +24,7 @@
     <form class="ui-filterable">
           <input id="autocomplete-input" data-type="search" placeholder="Escribe la dirección...">
     </form>
-    <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
+    <ul id="autocomplete" data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input">
     </ul>
 
   <br/>
@@ -66,7 +66,7 @@
           .then( function ( response ) {
             $.each( response, function ( i, address ) {
               console.log(address.description);
-              html += "<li>" + address.description + "</li>";
+              html += "<li><a href='#' onclick='requestCabify();'>" + address.description + "</a></li>";
             });
             $ul.html( html );
             $ul.listview( "refresh" );
